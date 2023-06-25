@@ -1,0 +1,73 @@
+<html>
+<head>
+</head>
+<body>
+  <br>
+  <canvas id="canvas" width="1000" height="500" style="border:1px solid #000000;"> </canvas>
+  <button onclick="bubble_Sort()" type="submit">Bubblesort</button>
+  <script>
+
+    const canvas = document.getElementById('canvas');
+    
+    const ctx = canvas.getContext('2d');
+    canvas.width = 1000;
+    canvas.height = 500;
+    var arr = [];
+    for (var i = 0, t = 5; i <= t; i++) {
+      arr.push(Math.round(Math.random() * t));
+      console.log(arr);
+    }
+   
+     
+    for (var i = 0, t = 5; i <= t; i++) {
+    
+      ctx.fillStyle = 'red';
+     
+ctx.fillRect(0,i *20 ,arr[i]*20 , 10, arr[i]*canvas.height);
+
+ctx.stroke();
+      
+    }
+
+    function sleep (time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+
+}
+  async function bubble_Sort()
+{
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+     
+  let len = arr.length;
+    for (let i = 0; i <= len; i++) {
+        for (let j = 0; j < len; j++) {
+            if (arr[j] > arr[j + 1]) {
+
+              ctx.clearRect(i,arr[j],canvas.width,canvas.height);
+                let tmp = arr[j];
+                 
+                arr[j] = arr[j + 1];
+                arr[j + 1] = tmp;
+
+
+            }
+        }
+    }
+    for (let i = 0; i <= len; i++) {
+  
+ 
+      ctx.fillStyle = 'orange';
+   
+await sleep(500);
+      ctx.fillRect(0,i * 20, arr[i] * 20, canvas.width / 100, arr[i]*500);
+    }
+ 
+
+    return arr;
+
+}
+
+  </script>
+
+</body>
+
+</html>
